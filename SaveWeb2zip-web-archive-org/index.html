@@ -1,0 +1,1339 @@
+<!DOCTYPE html><html lang="en"><head><script src="js/analytics.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app211.us.archive.org';v.server_ms=218;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="js/bundle-playback.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/wombat.js" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://primedice.com","20130522234421","https://web.archive.org/","web","/_static/",
+	      "1369266261");
+</script>
+<link rel="stylesheet" type="text/css" href="css/banner-styles.css">
+<link rel="stylesheet" type="text/css" href="css/iconochive.css">
+<!-- End Wayback Rewrite JS Include -->
+
+	<meta charset="utf-8">
+	<meta name="description" content="Convenience & simplicity; that's how we roll. PrimeDice is a state of the art Bitcoin casino. We offer the lowest house edge. Join the movement - PrimeDice is the new way to roll.">
+	<title>PrimeDice</title>
+
+	<link rel="stylesheet" href="css/css.css" type="text/css">
+	<link rel="stylesheet" href="css/reset.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
+
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.flightboard.min.js" type="text/javascript"></script>
+	<script src="js/jquery.simpleSlider.min.js" type="text/javascript"></script>
+	<script src="js/jquery.customSelect.min.js" type="text/javascript"></script>
+	<script src="js/jquery.zclip.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		Bet.recalculate();
+		$("#betForm").submit(function(event) {
+		  /* stop form from submitting normally */
+		  $('button[type="submit"]').attr('disabled','disabled');
+		  $('button[type="submit"]').css('background', 'url(\'/img/Button.gif\')');
+		  event.preventDefault();
+		 
+		  /* get some values from elements on the page: */
+		  var $form = $( this ),
+			  betV = $form.find( 'input[name="bet"]' ).val(),
+			  rollV = $form.find( 'input[name="roll"]' ).val(),
+			  seedV = $form.find( 'input[name="seed"]' ).val(),
+			  url = 'api_bet.php';
+		 
+		  /* Send the data using post */
+		  var posting = $.post( url, { roll: rollV, bet: betV, seed: seedV } );
+		 
+		  /* Put the results in a div */
+		  posting.done(function( data ) {
+			var content = $( data ).find( '#bet_refresh' );
+			var nseed = $( data ).find( '#nseed' );
+			var balance = $( data ).find( '#balance' );
+			var user_bets = $( data ).find( '#user_bets' );
+			$( "#bet_refresh" ).hide().html( content ).fadeIn('slow');
+			$( "#nseed" ).hide().html( nseed ).fadeIn('slow');
+			$( "#balance" ).html( balance );
+			$( '#user_bets' ).html( user_bets ).slideDown();
+			$('button[type="submit"]').removeAttr('disabled');
+			$('button[type="submit"]').removeAttr('style');
+		  });
+		});
+		
+		$("#default_bet1").click(function() {
+			$('input[name="popup"]').val('20.80');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet2").click(function() {
+			$('input[name="popup"]').val('34.00');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet3").click(function() {
+			$('input[name="popup"]').val('50.00');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet4").click(function() {
+			$('input[name="popup"]').val('50.50');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet5").click(function() {
+			$('input[name="popup"]').val('67.00');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet6").click(function() {
+			$('input[name="popup"]').val('80.20');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+		$("#default_bet7").click(function() {
+			$('input[name="popup"]').val('99.01');
+			$('input[name="popup"]').focus();
+			$('input[name="popup"]').click();
+			$('input[name="popup"]').change();
+			$('input[name="popup"]').keyUp();
+		});
+		
+	});
+		
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#balance').load('show_balance.php');
+	}, 5000); // refresh every 10000 milliseconds
+	
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#deposit_addr').load('show_deposit.php');
+	}, 5000); // refresh every 10000 milliseconds
+	
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#latest_bets').load('latest_bets.php?i=1');
+	}, 10000); // refresh every 10000 milliseconds
+	
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#latest_cashouts').load('latest_cashouts.php?i=1');
+	}, 10000); // refresh every 10000 milliseconds
+	
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#latest_profits').load('latest_profits.php?i=1');
+	}, 10000); // refresh every 10000 milliseconds
+	
+	var auto_refresh = setInterval(
+	function ()
+	{
+	$('#stats').load('stats.php');
+	}, 10000); // refresh every 10000 milliseconds
+	</script>
+</head>
+<body id="top" class="home"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="donate.php" scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="images/wayback-toolbar-logo-200.png" srcset="images/wayback-toolbar-logo-100.png, images/wayback-toolbar-logo-150.png 1.5x, images/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0"></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://primedice.com/" onfocus="this.focus();this.select();" style="flex:1;"><input type="hidden" name="type" value="replay"><input type="hidden" name="date" value="20130522234421"><input type="submit" value="Go">
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20130522234421*/http://primedice.com/" title="See a list of every capture for this URL">470 captures</a>
+          <div class="r" title="Timespan for captures of this URL">22 May 2013 - 29 May 2023</div>
+          </div>
+        <div class="k">
+          <a href id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="700" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Apr</td>
+            <td class="c" id="displayMonthEl" title="You are here: 23:44:21 May 22, 2013">MAY</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20130626010435/http://www.primedice.com:80/" title="26 Jun 2013"><strong>Jun</strong></a></td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><img src="images/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0"></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 23:44:21 May 22, 2013">22</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20130528162801/http://primedice.com/" title="16:28:01 May 28, 2013"><img src="images/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0"></a></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2012</td>
+            <td class="c" id="displayYearEl" title="You are here: 23:44:21 May 22, 2013">2013</td>
+            <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20140531214816/http://primedice.com:80/" title="31 May 2014"><strong>2014</strong></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive">
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20130522234421/http://web.archive.org/screenshot/http://primedice.com/" id="wm-screenshot" title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20130522234421/http://primedice.com/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20130522234421/http://primedice.com/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/webwidecrawl);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/webwidecrawl" target="_new"><span class="wm-title">Internet Archive</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  The Internet Archive discovers and captures web pages through many different web crawls.
+
+At any given time several distinct crawls are running, some for months, and some every day or longer.
+
+View the web archive through the <a href="http://archive.org/web/web.php">Wayback Machine</a>.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/liveweb)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/liveweb" target="_new"><span class="wm-title">Live Web Proxy Crawls</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Content crawled via the <a href="http://archive.org/web/web.php">Wayback Machine</a> Live Proxy mostly by the Save Page Now feature on web.archive.org.
+<br><br>
+Liveweb proxy is a component of Internet Archive’s wayback machine project. The liveweb proxy captures the content of a web page in real time, archives it into a ARC or WARC file and returns the ARC/WARC record back to the wayback machine to process. The recorded ARC/WARC file becomes part of the wayback machine in due course of time.
+<br>
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="images/loading.gif" alt="loading"></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20130522234421/http://primedice.com/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(700,27,25,2,"web","http://primedice.com/","20130522234421",1996,"/_static/",["/_static/css/banner-styles.css?v=S1zqJCYt","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+
+	<div id="container">
+
+		<header>
+
+			<div class="shell">
+				
+				
+				<nav>
+
+					<ul>
+						<li><a href="index.php" class="active">Home</a></li>
+						<li><a href="verification.php">Verification & Integrity</a></li>
+						<li><a href="faq.php">FAQ</a></li>
+						<li><a href="contact.php">Contact & Support</a></li>
+					</ul>
+				
+					<a href="/web/20130522234421/http://primedice.com/" class="logo">PrimeDice<br>The New Way to Roll</a>
+
+				</nav>
+				
+									<article class="left">
+
+	<h1>Why PrimeDice?</h1>
+
+	<ul>
+		<li>Lowest House Edge (1%)</li>
+		<li>Instant Startup</li>
+		<li>Instant Deposits</li>
+		<li>Instant Withdrawals</li>
+		<li>Massively Flexible Odds</li>
+		<li>Near to No TX Fees</li>
+		<li>Provably Fair</li>
+	</ul>
+
+	<div class="ticker">
+		Number of Bets
+		<div id="betsTicker" data-value="854090"></div>
+	</div>
+
+</article>
+
+<article class="center home">
+
+	<form action="get_address.php" method="post">
+		<input type="text" placeholder="Enter Your Desired Payout Address" name="address">
+		<button type="submit">Start Betting</button>
+	</form>
+
+</article>
+
+<article class="right">
+
+	<h1>Get Started Now</h1>
+	<ul>
+		<li>Enter Your<br>Desired Payout Address</li>
+		<li>Make a Deposit<br>to the Unique Address</li>
+		<li>Roll with PrimeDice &<br>Cashout Within Minutes<br>When Ready!</li>
+	</ul>
+	
+	<div class="ticker">
+		Bitcoins Wagered
+		<div id="wagersTicker" data-value="1.24153"></div>
+	</div>
+
+</article>				
+			</div>
+
+		</header>
+<section class="table">
+
+	<ul class="three">
+		<li class="active">Bets</li>
+		<li>Cashouts</li>
+		<li>Leaderboard</li>
+	</ul>
+
+	<article>	
+	
+			
+	<table>
+
+		<tbody><tr>
+			<th><span>#</span></th>
+			<th><span>User</span></th>
+			<th><span>Time</span></th>
+			<th><span>Roll Over</span></th>
+			<th><span>Multiplier</span></th>
+			<th><span>Bet</span></th>
+			<th><span>Result</span></th>
+			<th><span>Roll</span></th>
+		</tr>
+	<tr>
+							<td>
+								<strong>
+									201583
+									<span class="tooltip">
+										<span class="heading">
+											201583
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201583</span>
+							<span><span>Time:</span> 5 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 95.79</span>
+							<span><span>Win if roll over:</span> 29.8895</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> c16f24595705e089</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201583">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>5 seconds ago</td><td>29.89</td><td>1.41</td><td>0.00030000</td><td>Win</td><td>95.79</td></tr><tr>
+							<td>
+								<strong>
+									201582
+									<span class="tooltip">
+										<span class="heading">
+											201582
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201582</span>
+							<span><span>Time:</span> 14 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 42.6</span>
+							<span><span>Win if roll over:</span> 29.8895</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> aa1b1457504ccbd267653b42</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201582">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>14 seconds ago</td><td>29.89</td><td>1.41</td><td>0.00030000</td><td>Win</td><td>42.6</td></tr><tr>
+							<td>
+								<strong>
+									201581
+									<span class="tooltip">
+										<span class="heading">
+											201581
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201581</span>
+							<span><span>Time:</span> 24 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 59.08</span>
+							<span><span>Win if roll over:</span> 29.8895</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> df11df9e92deec31896</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201581">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>24 seconds ago</td><td>29.89</td><td>1.41</td><td>0.00030000</td><td>Win</td><td>59.08</td></tr><tr>
+							<td>
+								<strong>
+									201580
+									<span class="tooltip">
+										<span class="heading">
+											201580
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201580</span>
+							<span><span>Time:</span> 35 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 1.47</span>
+							<span><span>Win if roll over:</span> 29.8895</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> aaef29c4643d9f650b269a</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201580">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>35 seconds ago</td><td>29.89</td><td>1.41</td><td>0.00030000</td><td>Lose</td><td>1.47</td></tr><tr>
+							<td>
+								<strong>
+									201579
+									<span class="tooltip">
+										<span class="heading">
+											201579
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201579</span>
+							<span><span>Time:</span> 48 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 16.46</span>
+							<span><span>Win if roll over:</span> 27.1256</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 13b57e83c1bf56129b4e73</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201579">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>48 seconds ago</td><td>27.13</td><td>1.36</td><td>0.00030000</td><td>Lose</td><td>16.46</td></tr><tr>
+							<td>
+								<strong>
+									201578
+									<span class="tooltip">
+										<span class="heading">
+											201578
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201578</span>
+							<span><span>Time:</span> 58 seconds ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 21.29</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> a7002006ef1e5f2485c6c167c</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201578">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>58 seconds ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Lose</td><td>21.29</td></tr><tr>
+							<td>
+								<strong>
+									201577
+									<span class="tooltip">
+										<span class="heading">
+											201577
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201577</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 33.94</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 09f5cd14eba05026</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201577">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>33.94</td></tr><tr>
+							<td>
+								<strong>
+									201576
+									<span class="tooltip">
+										<span class="heading">
+											201576
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201576</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 94.63</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> fb56bd3e23bb3d153203</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201576">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>94.63</td></tr><tr>
+							<td>
+								<strong>
+									201575
+									<span class="tooltip">
+										<span class="heading">
+											201575
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201575</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 94.12</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> fee740e6b8c8317398e83cb7ab08ff</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201575">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>94.12</td></tr><tr>
+							<td>
+								<strong>
+									201574
+									<span class="tooltip">
+										<span class="heading">
+											201574
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201574</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 4.07</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 85eb1642264060b598cbe2</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201574">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Lose</td><td>4.07</td></tr><tr>
+							<td>
+								<strong>
+									201573
+									<span class="tooltip">
+										<span class="heading">
+											201573
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201573</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 95.63</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 15caeed2a6ab40c99b9b85dc</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201573">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>95.63</td></tr><tr>
+							<td>
+								<strong>
+									201572
+									<span class="tooltip">
+										<span class="heading">
+											201572
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201572</span>
+							<span><span>Time:</span> 1 minute ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 94.15</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 41208b2c3d1c1b890f9e508021c</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201572">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>1 minute ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>94.15</td></tr><tr>
+							<td>
+								<strong>
+									201570
+									<span class="tooltip">
+										<span class="heading">
+											201570
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201570</span>
+							<span><span>Time:</span> 2 minutes ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 2.46</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> cef2751f219c9357</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201570">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>2 minutes ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Lose</td><td>2.46</td></tr><tr>
+							<td>
+								<strong>
+									201569
+									<span class="tooltip">
+										<span class="heading">
+											201569
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201569</span>
+							<span><span>Time:</span> 2 minutes ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 32.66</span>
+							<span><span>Win if roll over:</span> 25.8694</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 36c492235f37489287e1b1fff</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201569">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>2 minutes ago</td><td>25.87</td><td>1.34</td><td>0.00030000</td><td>Win</td><td>32.66</td></tr><tr>
+							<td>
+								<strong>
+									201568
+									<span class="tooltip">
+										<span class="heading">
+											201568
+											<span>x</span>
+										</span><span><span>Bet ID:</span> 201568</span>
+							<span><span>Time:</span> 2 minutes ago</span>
+							<span><span>Account:</span> f02620a72b442548740512899e9a393f</span>
+							<span><span>Roll:</span> 68.94</span>
+							<span><span>Win if roll over:</span> 23.3568</span>
+							<span><span>Bet:</span> 0.00030000</span>
+							<span><span>Server seed:</span> 1669e4e1452c10469</span>
+							<span><span>Client seed:</span>7780434</span>
+							<span><span>Roll date:</span> 2013-05-23</span>
+							<span><span>Secret:</span> Wait 24 hours!</span>
+							<span><span>Link:</span> <a href="verify.php?id=201568">here</a></span>
+						</span>
+					</strong>
+					</td><td>F02620a72b</td><td>2 minutes ago</td><td>23.36</td><td>1.29</td><td>0.00030000</td><td>Win</td><td>68.94</td></tr>				
+		</tbody></table>
+	</article>
+
+	<article>
+		
+				
+		<table>
+		
+			<tbody><tr>
+				<th><span>User</span></th>
+				<th><span>Time</span></th>
+				<th><span>Amount</span></th>
+			</tr>
+				 
+			<tr>
+					<td>
+						<strong>
+							49a238acbe
+							<span class="tooltip">
+								<span class="heading">
+									49a238acbe
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 9060</span>
+									<span><span>Username:</span> 49a238acbe</span>
+									<span><span>Joined:</span> 2 days 20 hours ago</span>
+									<span><span></span><a href="bets.php?user=49a238acbe7ec9ad07d3fb2d397cb26d&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>1 minute 59 seconds ago</td>
+					<td>1.78062342</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							B54e99cc6d
+							<span class="tooltip">
+								<span class="heading">
+									B54e99cc6d
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12225</span>
+									<span><span>Username:</span> B54e99cc6d</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=b54e99cc6dabf65ac87ec68d4f76e9ef&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>11 minutes 25 seconds ago</td>
+					<td>0.01061000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							Da81be25ed
+							<span class="tooltip">
+								<span class="heading">
+									Da81be25ed
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 9822</span>
+									<span><span>Username:</span> Da81be25ed</span>
+									<span><span>Joined:</span> 2 days 10 hours ago</span>
+									<span><span></span><a href="bets.php?user=da81be25edfc02a211b2ca323ac022ed&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>22 minutes 54 seconds ago</td>
+					<td>1.10389916</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							49a238acbe
+							<span class="tooltip">
+								<span class="heading">
+									49a238acbe
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 9060</span>
+									<span><span>Username:</span> 49a238acbe</span>
+									<span><span>Joined:</span> 2 days 20 hours ago</span>
+									<span><span></span><a href="bets.php?user=49a238acbe7ec9ad07d3fb2d397cb26d&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>38 minutes 37 seconds ago</td>
+					<td>1.36086138</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							6ad2c507c5
+							<span class="tooltip">
+								<span class="heading">
+									6ad2c507c5
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12320</span>
+									<span><span>Username:</span> 6ad2c507c5</span>
+									<span><span>Joined:</span> 3 hours 11 minutes ago</span>
+									<span><span></span><a href="bets.php?user=6ad2c507c525e9b9d0e4e9b20c163fed&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>47 minutes 28 seconds ago</td>
+					<td>0.75370969</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							B54e99cc6d
+							<span class="tooltip">
+								<span class="heading">
+									B54e99cc6d
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12225</span>
+									<span><span>Username:</span> B54e99cc6d</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=b54e99cc6dabf65ac87ec68d4f76e9ef&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>1 hour 38 minutes ago</td>
+					<td>0.10937500</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							B54e99cc6d
+							<span class="tooltip">
+								<span class="heading">
+									B54e99cc6d
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12225</span>
+									<span><span>Username:</span> B54e99cc6d</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=b54e99cc6dabf65ac87ec68d4f76e9ef&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>1 hour 45 minutes ago</td>
+					<td>0.01050000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							B54e99cc6d
+							<span class="tooltip">
+								<span class="heading">
+									B54e99cc6d
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12225</span>
+									<span><span>Username:</span> B54e99cc6d</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=b54e99cc6dabf65ac87ec68d4f76e9ef&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>1 hour 55 minutes ago</td>
+					<td>0.12550000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							KoS
+							<span class="tooltip">
+								<span class="heading">
+									KoS
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 24</span>
+									<span><span>Username:</span> KoS</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=KoS&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>1 hour 56 minutes ago</td>
+					<td>0.66450000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							Ondratra
+							<span class="tooltip">
+								<span class="heading">
+									Ondratra
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12220</span>
+									<span><span>Username:</span> Ondratra</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=ondratra&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>2 hours 36 minutes ago</td>
+					<td>0.30241700</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							49a238acbe
+							<span class="tooltip">
+								<span class="heading">
+									49a238acbe
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 9060</span>
+									<span><span>Username:</span> 49a238acbe</span>
+									<span><span>Joined:</span> 2 days 20 hours ago</span>
+									<span><span></span><a href="bets.php?user=49a238acbe7ec9ad07d3fb2d397cb26d&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>2 hours 52 minutes ago</td>
+					<td>0.80166244</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							KoS
+							<span class="tooltip">
+								<span class="heading">
+									KoS
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 24</span>
+									<span><span>Username:</span> KoS</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=KoS&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>3 hours 18 seconds ago</td>
+					<td>0.13550000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							B7bd0634ba
+							<span class="tooltip">
+								<span class="heading">
+									B7bd0634ba
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12312</span>
+									<span><span>Username:</span> B7bd0634ba</span>
+									<span><span>Joined:</span> 4 hours 46 minutes ago</span>
+									<span><span></span><a href="bets.php?user=b7bd0634bad54c91c11c24a6c6fec260&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>3 hours 46 minutes ago</td>
+					<td>0.00140351</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							Roflpwnt
+							<span class="tooltip">
+								<span class="heading">
+									Roflpwnt
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12246</span>
+									<span><span>Username:</span> Roflpwnt</span>
+									<span><span>Joined:</span> 19 hours 34 minutes ago</span>
+									<span><span></span><a href="bets.php?user=roflpwnt&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>3 hours 50 minutes ago</td>
+					<td>0.26365341</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							Ondratra
+							<span class="tooltip">
+								<span class="heading">
+									Ondratra
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12220</span>
+									<span><span>Username:</span> Ondratra</span>
+									<span><span>Joined:</span> 1 day 2 hours ago</span>
+									<span><span></span><a href="bets.php?user=ondratra&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>3 hours 57 minutes ago</td>
+					<td>0.12136800</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							yup
+							<span class="tooltip">
+								<span class="heading">
+									yup
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 131</span>
+									<span><span>Username:</span> yup</span>
+									<span><span>Joined:</span> 4 days 14 hours ago</span>
+									<span><span></span><a href="bets.php?user=yup&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>4 hours 49 minutes ago</td>
+					<td>0.00337244</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							KoS
+							<span class="tooltip">
+								<span class="heading">
+									KoS
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 24</span>
+									<span><span>Username:</span> KoS</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=KoS&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>5 hours 8 minutes ago</td>
+					<td>1.01160000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							KoS
+							<span class="tooltip">
+								<span class="heading">
+									KoS
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 24</span>
+									<span><span>Username:</span> KoS</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=KoS&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>5 hours 18 minutes ago</td>
+					<td>0.60640000</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							Db273f9a18
+							<span class="tooltip">
+								<span class="heading">
+									Db273f9a18
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 12308</span>
+									<span><span>Username:</span> Db273f9a18</span>
+									<span><span>Joined:</span> 5 hours 41 minutes ago</span>
+									<span><span></span><a href="bets.php?user=db273f9a18e390e7db4ab2eb2d8f6db9&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>5 hours 22 minutes ago</td>
+					<td>0.01464786</td>
+				</tr>
+<tr>
+					<td>
+						<strong>
+							49a238acbe
+							<span class="tooltip">
+								<span class="heading">
+									49a238acbe
+									<span>x</span>
+								</span>
+									<span><span>User ID:</span> 9060</span>
+									<span><span>Username:</span> 49a238acbe</span>
+									<span><span>Joined:</span> 2 days 20 hours ago</span>
+									<span><span></span><a href="bets.php?user=49a238acbe7ec9ad07d3fb2d397cb26d&limit=200">View all previous bets</a></span>
+							</span>
+						</strong>
+					</td>
+					<td>5 hours 39 minutes ago</td>
+					<td>0.50685234</td>
+				</tr>
+				
+		</tbody></table>
+	</article>
+
+	<article>
+
+				
+		<table>
+
+			<tbody><tr>
+				<th><span>User</span></th>
+				<th><span>Number of Bets</span></th>
+				<th><span>Total Wagered</span></th>
+				<th><span>Prime Points</span></th>			 
+			</tr>			 
+				 
+			<tr>
+						<td>
+							<strong>
+								Bitcoinm
+								<span class="tooltip">
+									<span class="heading">
+										Bitcoinm
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 23</span>
+									<span><span>Username:</span> Bitcoinm</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=BitcoinM&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>1945</td>
+						<td>4240.58</td>
+						<td>13675</td>
+					</tr><tr>
+						<td>
+							<strong>
+								25eefc4cbf
+								<span class="tooltip">
+									<span class="heading">
+										25eefc4cbf
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 2746</span>
+									<span><span>Username:</span> 25eefc4cbf</span>
+									<span><span>Joined:</span> 4 days 3 hours ago</span>
+									<span><span></span><a href="bets.php?user=25eefc4cbfffd5314b836792fc4a6c4c&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>2224</td>
+						<td>1710.31</td>
+						<td>8981</td>
+					</tr><tr>
+						<td>
+							<strong>
+								Fun
+								<span class="tooltip">
+									<span class="heading">
+										Fun
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 86</span>
+									<span><span>Username:</span> Fun</span>
+									<span><span>Joined:</span> 4 days 15 hours ago</span>
+									<span><span></span><a href="bets.php?user=Fun&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>3962</td>
+						<td>1655.01</td>
+						<td>10207</td>
+					</tr><tr>
+						<td>
+							<strong>
+								B90fb8b09a
+								<span class="tooltip">
+									<span class="heading">
+										B90fb8b09a
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 2379</span>
+									<span><span>Username:</span> B90fb8b09a</span>
+									<span><span>Joined:</span> 4 days 5 hours ago</span>
+									<span><span></span><a href="bets.php?user=b90fb8b09a8e4549b5835553ea882bdb&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>1151</td>
+						<td>740.77</td>
+						<td>5013</td>
+					</tr><tr>
+						<td>
+							<strong>
+								2ac3f7ec09
+								<span class="tooltip">
+									<span class="heading">
+										2ac3f7ec09
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 12201</span>
+									<span><span>Username:</span> 2ac3f7ec09</span>
+									<span><span>Joined:</span> 1 day 5 hours ago</span>
+									<span><span></span><a href="bets.php?user=2ac3f7ec091f219f18106060b8fa5033&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>313</td>
+						<td>237.93</td>
+						<td>2052</td>
+					</tr><tr>
+						<td>
+							<strong>
+								37360d73b9
+								<span class="tooltip">
+									<span class="heading">
+										37360d73b9
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 211</span>
+									<span><span>Username:</span> 37360d73b9</span>
+									<span><span>Joined:</span> 4 days 12 hours ago</span>
+									<span><span></span><a href="bets.php?user=37360d73b96ed5b9655c8e3c71af8745&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>4833</td>
+						<td>133.31</td>
+						<td>3044</td>
+					</tr><tr>
+						<td>
+							<strong>
+								KoS
+								<span class="tooltip">
+									<span class="heading">
+										KoS
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 24</span>
+									<span><span>Username:</span> KoS</span>
+									<span><span>Joined:</span> 4 days 17 hours ago</span>
+									<span><span></span><a href="bets.php?user=KoS&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>176</td>
+						<td>97.30</td>
+						<td>1136</td>
+					</tr><tr>
+						<td>
+							<strong>
+								837a1224f1
+								<span class="tooltip">
+									<span class="heading">
+										837a1224f1
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 629</span>
+									<span><span>Username:</span> 837a1224f1</span>
+									<span><span>Joined:</span> 4 days 9 hours ago</span>
+									<span><span></span><a href="bets.php?user=837a1224f157be912b6d5f6442e2c280&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>1340</td>
+						<td>49.00</td>
+						<td>1339</td>
+					</tr><tr>
+						<td>
+							<strong>
+								3c2948cda7
+								<span class="tooltip">
+									<span class="heading">
+										3c2948cda7
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 2311</span>
+									<span><span>Username:</span> 3c2948cda7</span>
+									<span><span>Joined:</span> 4 days 5 hours ago</span>
+									<span><span></span><a href="bets.php?user=3c2948cda7b6daa9d91233dde414a42e&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>47</td>
+						<td>48.75</td>
+						<td>578</td>
+					</tr><tr>
+						<td>
+							<strong>
+								B18e54ceb0
+								<span class="tooltip">
+									<span class="heading">
+										B18e54ceb0
+										<span>x</span>
+									</span>
+									<span><span>User ID:</span> 7981</span>
+									<span><span>Username:</span> B18e54ceb0</span>
+									<span><span>Joined:</span> 3 days 3 hours ago</span>
+									<span><span></span><a href="bets.php?user=b18e54ceb029ec88d5d2bc9837ed40d9&limit=200">View all previous bets</a></span>
+								</span>
+							</strong>
+						</td>
+						<td>214</td>
+						<td>44.87</td>
+						<td>810</td>
+					</tr>				
+		</tbody></table>
+	</article>
+
+</section>
+
+		<footer>
+
+			<nav>
+				<a href="verification.php">Verification & Integrity</a>
+				<a href="index.php">Home</a>
+				<a href="faq.php">FAQ</a>
+				<a href="faq.php">Contact & Support</a>
+			</nav>
+
+			<article>
+
+				All rights reserved. <a href="/web/20130522234421/http://primedice.com/">PrimeDice 2013</a>
+
+			</article>
+
+
+			<article>
+
+				<a href="index.php" class="logo">PrimeDice</a>
+				<a href="https://web.archive.org/web/20130522234421/https://twitter.com/PrimeDice" class="fb">Twitter</a>
+				<a href="https://web.archive.org/web/20130522234421/https://www.facebook.com/officialprimedice" class="tw">Facebook</a>
+
+			</article>
+
+
+			<article>
+
+				site by <a href="https://web.archive.org/web/20130522234421/http://dtailstudio.com/">dtailstudio</a>
+
+			</article>
+
+		</footer>
+		
+	</div>
+
+
+
+</body></html>
